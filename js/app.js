@@ -8,6 +8,7 @@ let allBusMallProducts = [];
 let maxProductVotes = 25;
 
 
+
 // Dom References
 
 let productContainer = document.getElementById('productContainer');
@@ -15,8 +16,8 @@ let productOne = document.getElementById('productOne');
 let productTwo = document.getElementById('productTwo');
 let productThree = document.getElementById('productThree');
 
-let viewResultsButton = document.getElementById('view-results-button');
-let resultsList = document.getElementById('results-list');
+//let viewResultsButton = document.getElementById('view-results-button');
+let resultsList = document.getElementById('resultsList');
 
 // Constructor
 
@@ -35,8 +36,25 @@ new BusProduct('banana');
 new BusProduct('bathroom');
 new BusProduct('boots');
 new BusProduct('breakfast');
+new BusProduct('bubblegum');
+new BusProduct('chair');
+new BusProduct('cthulhu');
+new BusProduct('dog-duck');
+new BusProduct('dragon');
+new BusProduct('dragon');
+new BusProduct('pen');
+new BusProduct('pet-sweep');
+new BusProduct('scissors');
+new BusProduct('scissors');
+new BusProduct('shark');
 new BusProduct('sweep', 'png');
+new BusProduct('tauntaun');
+new BusProduct('unicorn');
+new BusProduct('water-can');
+new BusProduct('wine-glass');
 console.log(allBusMallProducts);
+
+
 
 // Helper Functions/Executable Code
 
@@ -83,7 +101,7 @@ function handleVoteClick(event) {
 
   for (let i = 0; i < allBusMallProducts.length; i++) {
     if(productVoteByImage === allBusMallProducts[i].name) {
-      BusProduct.allBusMallProducts[i].votes++;
+      allBusMallProducts[i].votes++;
     }
   }
   // render again here?
@@ -97,13 +115,14 @@ function handleVoteClick(event) {
 function handleViewResults(){
   if(maxProductVotes === 0) {
     for (let i = 0; i < allBusMallProducts.length; i++){
-      let liElement = document.createElement('li');
-      liElement.textContent = `${allBusMallProducts[i].name} was shown ${allBusMallProducts[i].views} times and voted for ${allBusMallProducts[i].votes} times.`;
-      resultsList.appendChild(liElement);
+      let ulElement = document.createElement('ul');
+      ulElement.textContent = `${allBusMallProducts[i].name} was shown ${allBusMallProducts[i].views} times and voted for ${allBusMallProducts[i].votes} times.`;
+      resultsList.appendChild(ulElement);
     }
   }
 }
 
+handleViewResults();
 
 // Event Handlers
 // **ADD HANDLE EVENT HERE WITH ADD AND REMOVE EVENTS FOR CLICK AND TRACK CLICKS***
@@ -112,4 +131,4 @@ function handleViewResults(){
 // ** ADD EVENT LISTENER FOR VOTE CLICKS
 
 productContainer.addEventListener('click', handleVoteClick);
-viewResultsButton.addEventListener('click', handleViewResults);
+resultsList.addEventListener('click', handleViewResults);
