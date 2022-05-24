@@ -104,7 +104,7 @@ function handleVoteClick(event) {
       allBusMallProducts[i].votes++;
     }
   }
-  // render again here?
+  // render again here??
   renderBusMallProducts();
 
   if(maxProductVotes === 0){
