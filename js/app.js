@@ -5,7 +5,7 @@
 // global variables
 
 let allBusMallProducts = [];
-let clickVotes = 25;
+let maxProductVotes = 25;
 
 
 // Dom References
@@ -14,6 +14,9 @@ let productContainer = document.getElementById('productContainer');
 let productOne = document.getElementById('productOne');
 let productTwo = document.getElementById('productTwo');
 let productThree = document.getElementById('productThree');
+
+let viewResultsButton = document.getElementById('view-results-button');
+let resultsList = document.getElementById('results-list');
 
 // Constructor
 
@@ -27,32 +30,86 @@ function BusProduct(name, fileExtension = 'jpg') {
   allBusMallProducts.push(this);
 }
 
+new BusProduct('bag');
+new BusProduct('banana');
+new BusProduct('bathroom');
+new BusProduct('boots');
+new BusProduct('breakfast');
+new BusProduct('sweep', 'png');
+console.log(allBusMallProducts);
 
 // Helper Functions/Executable Code
 
-
-
 // random image/array selector generation. credit W3Resources
-
 function getRandomProduct(){
-  return Math.floor(Math.random() * BusProduct.length);
+  return Math.floor(Math.random() * allBusMallProducts.length);
 
 }
-
+// ** BUILD FUNCTION THAT TRACK VIEWS OF INDIVIDUAL OBJECTS
 function renderBusMallProducts (){
-  let itemOne = getRandomProduct();
-  let itemTwo = getRandomProduct();
-  let itemThree = getRandomProduct();
+  let productOneIndex = getRandomProduct();
+  let productTwoIndex = getRandomProduct();
+  let productThreeIndex = getRandomProduct();
+
+  while(productOneIndex === productTwoIndex){
+    productTwoIndex = getRandomProduct();
+  }
+
+  while(productTwoIndex === productThreeIndex || productOneIndex === productThreeIndex ){
+    productThreeIndex = getRandomProduct();
+  }
+  console.log(productOneIndex, productTwoIndex, productThreeIndex);
+
+  productOne.src = allBusMallProducts[productOneIndex].photo;
+  productOne.alt = allBusMallProducts[productOneIndex].name;
+  allBusMallProducts[productOneIndex].views++;
+
+  productTwo.src = allBusMallProducts[productTwoIndex].photo;
+  productTwo.alt = allBusMallProducts[productTwoIndex].name;
+  allBusMallProducts[productTwoIndex].views++;
+
+  productThree.src = allBusMallProducts[productThreeIndex].photo;
+  productThree.alt = allBusMallProducts[productThreeIndex].name;
+  allBusMallProducts[productThreeIndex].views++;
 }
 
+renderBusMallProducts();
 
-//new BusProduct('bag');
-//new BusProduct('banana');
-//new BusProduct('bathroom');
-//new BusProduct('boots');
-// new BusProduct('breakfast');
-// console.log(BusProduct);
+// ** RECORD VOTES
+function handleVoteClick(event) {
+  maxProductVotes--;
+
+  let productVoteByImage = event.target.alt;
+
+  for (let i = 0; i < allBusMallProducts.length; i++) {
+    if(productVoteByImage === allBusMallProducts[i].name) {
+      BusProduct.allBusMallProducts[i].votes++;
+    }
+  }
+  // render again here?
+  renderBusMallProducts();
+
+  if(maxProductVotes === 0){
+    productContainer.removeEventListener('click', handleVoteClick);
+  }
+}
+
+function handleViewResults(){
+  if(maxProductVotes === 0) {
+    for (let i = 0; i < allBusMallProducts.length; i++){
+      let liElement = document.createElement('li');
+      liElement.textContent = `${allBusMallProducts[i].name} was shown ${allBusMallProducts[i].views} times and voted for ${allBusMallProducts[i].votes} times.`;
+      resultsList.appendChild(liElement);
+    }
+  }
+}
+
 
 // Event Handlers
+// **ADD HANDLE EVENT HERE WITH ADD AND REMOVE EVENTS FOR CLICK AND TRACK CLICKS***
 
 // Event Listeners
+// ** ADD EVENT LISTENER FOR VOTE CLICKS
+
+productContainer.addEventListener('click', handleVoteClick);
+viewResultsButton.addEventListener('click', handleViewResults);
