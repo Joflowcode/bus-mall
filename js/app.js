@@ -11,13 +11,13 @@ let maxProductVotes = 25;
 
 // Dom References
 
-let productContainer = document.getElementById('productContainer');
-let productOne = document.getElementById('productOne');
-let productTwo = document.getElementById('productTwo');
-let productThree = document.getElementById('productThree');
+let productContainer = document.getElementById('product-container');
+let productOne = document.getElementById('product-one');
+let productTwo = document.getElementById('product-two');
+let productThree = document.getElementById('product-three');
 
-//let showResultsButton = document.getElementById('show-results-button');
-let resultsList = document.getElementById('resultsList');
+let showResultsButton = document.getElementById('show-results-button');
+let resultsList = document.getElementById('results-list');
 
 // Constructor
 
@@ -63,8 +63,9 @@ function getRandomProduct(){
   return Math.floor(Math.random() * allBusMallProducts.length);
 
 }
-// ** BUILD FUNCTION THAT TRACK VIEWS OF INDIVIDUAL OBJECTS
+
 function renderBusMallProducts (){
+
   let productOneIndex = getRandomProduct();
   let productTwoIndex = getRandomProduct();
   let productThreeIndex = getRandomProduct();
@@ -93,32 +94,32 @@ function renderBusMallProducts (){
 
 renderBusMallProducts();
 
-// ** RECORD VOTES
+// ** RECORD VOTES Event Handler
 function handleVoteClick(event) {
   maxProductVotes--;
 
   let productVoteByImage = event.target.alt;
 
-  for (let i = 0; i < allBusMallProducts.length; i++) {
-    if(productVoteByImage === allBusMallProducts[i].name) {
+  for(let i = 0; i < allBusMallProducts.length; i++) {
+    if(productVoteByImage === allBusMallProducts[i].name){
       allBusMallProducts[i].votes++;
     }
   }
-  // render again here??
+  // render again here to get 3 new image choices
   renderBusMallProducts();
 
+  // stop clicks after all rounds
   if(maxProductVotes === 0){
     productContainer.removeEventListener('click', handleVoteClick);
+
   }
+
 }
 
-
-
-
+// make button available
 // declare variable for area being targeted before creating loop. append to new element li
-function clickResults(){
-  if(maxProductVotes === 0); {
-    //let clicks = document.querySelector('ul');
+function handleShowResults(){
+  if(maxProductVotes === 0){
     for(let i = 0; i < allBusMallProducts.length; i++){
       let listElement = document.createElement('li');
       listElement.textContent = `${allBusMallProducts[i].name} was shown ${allBusMallProducts[i].views} times and voted for ${allBusMallProducts[i].votes} times.`;
@@ -134,4 +135,4 @@ function clickResults(){
 // Event Listeners
 
 productContainer.addEventListener('click', handleVoteClick);
-resultsList.addEventListener('click', clickResults);
+showResultsButton.addEventListener('click', handleShowResults);
