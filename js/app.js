@@ -41,10 +41,8 @@ new BusProduct('chair');
 new BusProduct('cthulhu');
 new BusProduct('dog-duck');
 new BusProduct('dragon');
-new BusProduct('dragon');
 new BusProduct('pen');
 new BusProduct('pet-sweep');
-new BusProduct('scissors');
 new BusProduct('scissors');
 new BusProduct('shark');
 new BusProduct('sweep', 'png');
@@ -58,26 +56,40 @@ console.log(allBusMallProducts);
 
 // Helper Functions/Executable Code
 
-// random image/array selector generation. credit W3Resources
+// random image/array selector generation. credit W3Resources and class demo for array method
 function getRandomProduct(){
   return Math.floor(Math.random() * allBusMallProducts.length);
 
 }
 
+let productIndexArray = [];
+
 function renderBusMallProducts (){
 
-  let productOneIndex = getRandomProduct();
-  let productTwoIndex = getRandomProduct();
-  let productThreeIndex = getRandomProduct();
-
-  while(productOneIndex === productTwoIndex){
-    productTwoIndex = getRandomProduct();
+  while(productIndexArray.length < 6) {
+    let randomProduct = getRandomProduct();
+    if(!productIndexArray.includes(randomProduct)){
+      productIndexArray.push(randomProduct);
+    }
   }
 
-  while(productTwoIndex === productThreeIndex || productOneIndex === productThreeIndex ){
-    productThreeIndex = getRandomProduct();
-  }
+  let productOneIndex = productIndexArray.shift();
+  let productTwoIndex = productIndexArray.shift();
+  let productThreeIndex = productIndexArray.shift();
   console.log(productOneIndex, productTwoIndex, productThreeIndex);
+
+  //let productOneIndex = getRandomProduct();
+  //let productTwoIndex = getRandomProduct();
+  //let productThreeIndex = getRandomProduct();
+
+  //while(productOneIndex === productTwoIndex){
+  //productTwoIndex = getRandomProduct();
+  //}
+
+  //while(productTwoIndex === productThreeIndex || productOneIndex === productThreeIndex ){
+  //productThreeIndex = getRandomProduct();
+  //}
+  //console.log(productOneIndex, productTwoIndex, productThreeIndex);
 
   productOne.src = allBusMallProducts[productOneIndex].photo;
   productOne.alt = allBusMallProducts[productOneIndex].name;
