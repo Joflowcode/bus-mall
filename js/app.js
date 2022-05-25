@@ -63,6 +63,7 @@ function getRandomProduct(){
 }
 
 let productIndexArray = [];
+console.log(productIndexArray);
 
 function renderBusMallProducts (){
 
@@ -78,18 +79,6 @@ function renderBusMallProducts (){
   let productThreeIndex = productIndexArray.shift();
   console.log(productOneIndex, productTwoIndex, productThreeIndex);
 
-  //let productOneIndex = getRandomProduct();
-  //let productTwoIndex = getRandomProduct();
-  //let productThreeIndex = getRandomProduct();
-
-  //while(productOneIndex === productTwoIndex){
-  //productTwoIndex = getRandomProduct();
-  //}
-
-  //while(productTwoIndex === productThreeIndex || productOneIndex === productThreeIndex ){
-  //productThreeIndex = getRandomProduct();
-  //}
-  //console.log(productOneIndex, productTwoIndex, productThreeIndex);
 
   productOne.src = allBusMallProducts[productOneIndex].photo;
   productOne.alt = allBusMallProducts[productOneIndex].name;
@@ -138,6 +127,98 @@ function handleShowResults(){
       resultsList.appendChild(listElement);
     }
   }
+}
+
+
+
+
+// research 2d under getContext
+// Canvas Element targeting html element
+const ctx = document.getElementById('myChart').getContext('2d');
+
+
+// 1st argument = canvas Element
+// 2nd arg = object - 3 properties: type, data, options
+
+// {
+// type:
+// data:
+// options:
+//}
+
+//render chart
+
+function renderProductChart(){
+  let productName = [];
+  let productVotes = [];
+  let productViews = [];
+
+  for(let i = 0; i < allBusMallProducts.length; i++){
+    productName.push(allBusMallProducts[i].name);
+    productVotes.push(allBusMallProducts[i].votes);
+    productViews.push(allBusMallProducts[i].views);
+  }
+  // note - careful with brackets, accidentally broke function section for the object.
+
+  //actual argument I'm working with. want to use the ENTIRE chartjs object as the second argument for, and include the 3 properties). Then change the handle clicks above to show a chart vs the result list.
+  
+  let myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: productName,
+      datasets: [{
+        label: '# of Votes',
+        data: productVotes,
+        backgroundColor: [
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(255, 159, 64, 0.2)'
+        ],
+        borderColor: [
+          'rgba(255, 99, 132, 1)',
+          'rgba(54, 162, 235, 1)',
+          'rgba(255, 206, 86, 1)',
+          'rgba(75, 192, 192, 1)',
+          'rgba(153, 102, 255, 1)',
+          'rgba(255, 159, 64, 1)'
+        ],
+        borderWidth: 1
+      },
+      {
+        label: '# of views',
+        data: productViews,
+        backgroundColor: [
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(255, 159, 64, 0.2)'
+        ],
+        borderColor: [
+          'rgba(255, 99, 132, 1)',
+          'rgba(54, 162, 235, 1)',
+          'rgba(255, 206, 86, 1)',
+          'rgba(75, 192, 192, 1)',
+          'rgba(153, 102, 255, 1)',
+          'rgba(255, 159, 64, 1)'
+        ],
+        borderWidth: 1
+      }
+      ]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+
 }
 
 
