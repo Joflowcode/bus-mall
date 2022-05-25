@@ -16,7 +16,7 @@ let productOne = document.getElementById('productOne');
 let productTwo = document.getElementById('productTwo');
 let productThree = document.getElementById('productThree');
 
-//let viewResultsButton = document.getElementById('view-results-button');
+//let showResultsButton = document.getElementById('show-results-button');
 let resultsList = document.getElementById('resultsList');
 
 // Constructor
@@ -112,23 +112,26 @@ function handleVoteClick(event) {
   }
 }
 
-function handleViewResults(){
-  if(maxProductVotes === 0) {
-    for (let i = 0; i < allBusMallProducts.length; i++){
-      let ulElement = document.createElement('ul');
-      ulElement.textContent = `${allBusMallProducts[i].name} was shown ${allBusMallProducts[i].views} times and voted for ${allBusMallProducts[i].votes} times.`;
-      resultsList.appendChild(ulElement);
+
+
+
+// declare variable for area being targeted before creating loop. append to new element li
+function clickResults(){
+  if(maxProductVotes === 0); {
+    //let clicks = document.querySelector('ul');
+    for(let i = 0; i < allBusMallProducts.length; i++){
+      let listElement = document.createElement('li');
+      listElement.textContent = `${allBusMallProducts[i].name} was shown ${allBusMallProducts[i].views} times and voted for ${allBusMallProducts[i].votes} times.`;
+      resultsList.appendChild(listElement);
     }
   }
 }
 
-handleViewResults();
 
 // Event Handlers
 // **ADD HANDLE EVENT HERE WITH ADD AND REMOVE EVENTS FOR CLICK AND TRACK CLICKS***
 
 // Event Listeners
-// ** ADD EVENT LISTENER FOR VOTE CLICKS
 
 productContainer.addEventListener('click', handleVoteClick);
-resultsList.addEventListener('click', handleViewResults);
+resultsList.addEventListener('click', clickResults);
