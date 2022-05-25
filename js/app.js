@@ -19,6 +19,8 @@ let productThree = document.getElementById('product-three');
 let showResultsButton = document.getElementById('show-results-button');
 let resultsList = document.getElementById('results-list');
 
+let myChart = document.getElementById('myChart');
+
 // Constructor
 
 function BusProduct(name, fileExtension = 'jpg') {
@@ -109,9 +111,10 @@ function handleVoteClick(event) {
   // render again here to get 3 new image choices
   renderBusMallProducts();
 
-  // stop clicks after all rounds
+  // stop clicks after all rounds. ADD the new function created for the mychartObject that renders a chart instead of showing list.
   if(maxProductVotes === 0){
     productContainer.removeEventListener('click', handleVoteClick);
+    renderProductChart();
 
   }
 
@@ -134,7 +137,7 @@ function handleShowResults(){
 
 // research 2d under getContext
 // Canvas Element targeting html element
-const ctx = document.getElementById('myChart').getContext('2d');
+
 
 
 // 1st argument = canvas Element
@@ -161,7 +164,8 @@ function renderProductChart(){
   // note - careful with brackets, accidentally broke function section for the object.
 
   //actual argument I'm working with. want to use the ENTIRE chartjs object as the second argument for, and include the 3 properties). Then change the handle clicks above to show a chart vs the result list.
-  
+  const ctx = document.getElementById('myChart').getContext('2d');
+
   let myChart = new Chart(ctx, {
     type: 'bar',
     data: {
