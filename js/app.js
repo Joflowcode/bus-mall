@@ -28,28 +28,45 @@ function BusProduct(name, fileExtension = 'jpg') {
   allBusMallProducts.push(this);
 }
 
-new BusProduct('bag');
-new BusProduct('banana');
-new BusProduct('bathroom');
-new BusProduct('boots');
-new BusProduct('breakfast');
-new BusProduct('bubblegum');
-new BusProduct('chair');
-new BusProduct('cthulhu');
-new BusProduct('dog-duck');
-new BusProduct('dragon');
-new BusProduct('pen');
-new BusProduct('pet-sweep');
-new BusProduct('scissors');
-new BusProduct('shark');
-new BusProduct('sweep', 'png');
-new BusProduct('tauntaun');
-new BusProduct('unicorn');
-new BusProduct('water-can');
-new BusProduct('wine-glass');
-console.log(allBusMallProducts);
+//LOCAL STORAGE part 2
 
+//Step 3: get data out of local storage
+//credit is mostly in class demo, but still tried to talk and work the logic out as I worked it as encouraged
 
+let retrievedProducts = localStorage.getItem('busProducts');
+console.log('Retrieved Products', retrievedProducts);
+
+// step 4: parse data using the JSON.Parse() as per lab
+
+let parsedProducts = JSON.parse(retrievedProducts);
+console.log('Parsed >>>>', parsedProducts);
+
+if(retrievedProducts){
+  allBusMallProducts = parsedProducts;
+} else {
+
+  new BusProduct('bag');
+  new BusProduct('banana');
+  new BusProduct('bathroom');
+  new BusProduct('boots');
+  new BusProduct('breakfast');
+  new BusProduct('bubblegum');
+  new BusProduct('chair');
+  new BusProduct('cthulhu');
+  new BusProduct('dog-duck');
+  new BusProduct('dragon');
+  new BusProduct('pen');
+  new BusProduct('pet-sweep');
+  new BusProduct('scissors');
+  new BusProduct('shark');
+  new BusProduct('sweep', 'png');
+  new BusProduct('tauntaun');
+  new BusProduct('unicorn');
+  new BusProduct('water-can');
+  new BusProduct('wine-glass');
+  console.log(allBusMallProducts);
+  console.log('RECONSTRUCTED PRODUCTS >>', allBusMallProducts);
+}
 
 // random image/array selector generation. credit W3Resources and class demo for array method
 function getRandomProduct(){
@@ -100,13 +117,21 @@ function handleVoteClick(event) {
       allBusMallProducts[i].votes++;
     }
   }
- 
+
   renderBusMallProducts();
 
   if(maxProductVotes === 0){
     productContainer.removeEventListener('click', handleVoteClick);
     renderProductChart();
 
+    //step 1: stringify data (above Event Listeners and after chart somewhere). test best location
+
+    let stringifiedProducts = JSON.stringify(allBusMallProducts);
+
+    console.log(stringifiedProducts);
+
+    //Step 2: add it to local storage
+    localStorage.setItem('busProducts', stringifiedProducts);
   }
 
 }
@@ -192,6 +217,7 @@ function renderProductChart(){
   });
 
 }
+
 
 productContainer.addEventListener('click', handleVoteClick);
 showResultsButton.addEventListener('click', handleShowResults);
