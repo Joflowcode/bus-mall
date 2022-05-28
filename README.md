@@ -5,13 +5,12 @@ Project is to gain experience in developing applications with the use of user st
 
 ***
 ### **Status**
-Latest Progress: functions work and view button works!
-
-Next: Update CSS Styling, add a library and add chart
+Final Submission for BusBall Lab
 
 ***
 ### **Contributors**
 ***
+{[Static Color Change Credit/Source](credit for static color change https://alvarotrigo.com/blog/css-text-animations)
 
 github user @JRay87 did code review to assist troubleshooting getting JS button to work
 
