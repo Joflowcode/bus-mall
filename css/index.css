@@ -1,0 +1,128 @@
+body {
+  background-color: #fffbc7;
+  color: #ff3482;
+  font-family: 'Mulish', sans-serif;
+
+}
+
+/* credit for static color change https://alvarotrigo.com/blog/css-text-animations/ */ 
+.title-word {
+  animation: color-animation 4s linear infinite;
+}
+
+.title-word-1 {
+  --color-1: #DF8453;
+  --color-2: #3D8DAE;
+  --color-3: #E4A9A8;
+}
+
+.title-word-2 {
+  --color-1: #DBAD4A;
+  --color-2: #ACCFCB;
+  --color-3: #17494D;
+}
+
+.title-word-3 {
+  --color-1: #ACCFCB;
+  --color-2: #E4A9A8;
+  --color-3: #ACCFCB;
+}
+
+.title-word-4 {
+  --color-1: #3D8DAE;
+  --color-2: #DF8453;
+  --color-3: #E4A9A8;
+}
+
+@keyframes color-animation {
+  0%    {color: var(--color-1)}
+  32%   {color: var(--color-1)}
+  33%   {color: var(--color-2)}
+  65%   {color: var(--color-2)}
+  66%   {color: var(--color-3)}
+  99%   {color: var(--color-3)}
+  100%  {color: var(--color-1)}
+}
+
+
+.container {
+  display: flex;
+  color: #ff3482;
+  text-align: center;
+  justify-content: center;
+  padding-top: 20px;
+  font-family: 'Mulish', sans-serif;
+}
+
+
+.title {
+  font-family: 'Mulish', sans-serif;
+  font-weight: 800;
+  font-size: 8.5vw;
+  text-transform: uppercase;
+}
+
+
+h2 {
+  display: flex;
+  color: #ff3482;
+  text-transform: uppercase;
+  text-align: center;
+  justify-content: center;
+  font-family: 'Mulish', sans-serif;
+  font-size: 40px;
+}
+
+#home {
+  display: flex;
+  justify-content: center;
+  margin-bottom: -50px;
+  margin-top: -50px;
+  
+}
+
+
+#home-paragraph {
+  display: flex;
+  color: #ff3482;
+  text-transform: uppercase;
+  text-align: center;
+  justify-content: center;
+  font-family: 'Mulish', sans-serif;
+  font-weight: 600;
+  font-size: 24px;
+  padding-bottom: 100px;
+}
+
+a {
+  background-color: #c3ffaa;
+  color: #0ffff8;
+  text-decoration: none;
+  padding: 15px;
+  border-radius: 100%;
+  font-family: 'Mulish', sans-serif;
+
+}
+
+#link {
+  display: flex;
+  color: #ff3482;
+  text-align: center;
+  justify-content: center;
+  font-family: 'Mulish', sans-serif;
+  font-weight: 600;
+  font-size: 30px;
+  padding-bottom: 100px;
+
+}
+a:hover {
+    background-color:#ff0f80;
+}
+  
+a:active {
+    background-color: #c3ffaa;
+}
+  
+a:visited {
+    background-color: #ff61ce;
+}

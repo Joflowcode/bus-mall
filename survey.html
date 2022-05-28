@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Mulish&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/survey.css">
+    <link rel="stylesheet" href="css/reset.css">
+  </head>
+  <body>
+    <div id="center-page">
+    
+      <h1>BUS MALL</h1>
+      <h2>Please vote for which product you would purchase between 3 choices by clicking on the product image below:</h2>
+
+      <p>After your votes have been submitted you can click the view results list button under images to see your top choices. Or once the voting ends you will be presented with a chart showing your votes.</p>
+
+      <section id ="product-container">
+        <img id ="product-one" src ="" alt="">
+        <img id ="product-two" src ="" alt="">
+        <img id ="product-three" src ="" alt="">
+      </section>
+
+      <div id="show-results-button">VIEW RESULTS</div>
+      <ul id="results-list"></ul>
+        
+  
+    <canvas id="myChart" width="400" height="400"></canvas>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
+    <script src="js/survey.js"></script>
+  
+  </body>
+</html>

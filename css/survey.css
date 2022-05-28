@@ -1,0 +1,79 @@
+body {
+  background-color: #fffbc7;
+  color: #ff3482;
+  display: flex;
+  justify-content: center;
+  font-family: 'Mulish', sans-serif;
+  
+}
+
+h1 {
+  color: #ff3482;
+  text-align: center;
+  font-family: 'Mulish', sans-serif;
+  font-size: 45px;
+  
+}
+
+h2  {
+  color: #ff3482;
+  text-align: center;
+  font-family: 'Mulish', sans-serif;
+  font-size: 30px;
+}
+
+p {
+  display:flex;
+  color: #ff3482;
+  margin:auto;
+  text-align: center;
+  font-family: 'Mulish', sans-serif;
+  font-weight:bold;
+  font-size: 30px;
+  padding-left: 60px;
+  padding-right: 60px;
+}
+
+
+
+
+#product-container {
+display:flex;
+justify-content: center;
+padding: 30px;
+}
+
+
+img {
+  border: 7px solid #ff3482;
+  width: 350px;
+  height: 350px;
+  margin: 25px;
+  border-style: outset;
+
+
+}
+
+#results-btn {
+  color:green;
+}
+
+#show-results-button {
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  background-color:#ff3482;
+  color:whitesmoke;
+  padding: 20px;
+  transition: 500ms;
+  font-size: 25px;
+  margin: auto;
+  cursor:pointer;
+  width: 10%;
+  font-family: 'Mulish', sans-serif;
+
+}
+  
+#show-results-button:hover {
+  background-color: aquamarine;
+}
